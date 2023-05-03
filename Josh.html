@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josh Comeau</title>
+    <link href="Josh.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header>
+        
+      <div id="header">
+       
+        <div id="header-left">
+          <div style="width: 1000px; max-width: 1100px; display:flex">
+          <span class="a" href="https://www.joshwcomeau.com/">Josh</span><span class="b">W</span><span class="c">^</span></span><span class="a">Comeau</span></a>
+          </div>
+          <nav>
+              <ul class="ul">
+                <a href="https://www.joshwcomeau.com/latest/"><li style="padding: 8px;">Latest</li></a>
+                <a href="https://www.joshwcomeau.com/tutorials/"><li style="padding: 8px;">Posts</li></a>
+                <a href="https://www.joshwcomeau.com/snippets/"><li style="padding: 8px;">Snippets</li></a>
+                <a href="https://www.joshwcomeau.com/goodies/"><li style="padding: 8px;">Goodies</li></a>
+              </ul>
+          </nav>
+        </div>
+     
+        
+        <ul id="header-right">
+          <li class="li"><img src="./Sun (1).svg"/></li>
+          <li class="li"><img src="./volume (1).svg"/></li>
+          <li class="li"><img src="./RSS.svg"/></li>              
+        </ul>  
+    </header>
+    </div>
+      
+      <div class="section">
+      <div background-color: rgb(223, 235, 246); width: 100%;></div>
+      <div id="bottom-">
+        <ul class="ul">
+          <a href="https://www.joshwcomeau.com/"><li>Home</li></a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="Breadcrumbs__Caret-sc-1upqnen-1 dnfuPa"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <a href="https://www.joshwcomeau.com/tutorials/"><li>Tutorials</li></a>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="Breadcrumbs__Caret-sc-1upqnen-1 dnfuPa"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <a href="https://www.joshwcomeau.com/tutorials/javascript/"><li>javascript</li></a>
+        </ul>
+      </div>  
+      
+        <h1 class="h1" id="introduction">Statements Vs. Expressions</h1>
+
+      </div>
+      <div id="div"></div>
+ 
+  
+  <main>
+    <article>
+      <section>
+      <p class="p">So, a few years ago, I was teaching web development at a local coding bootcamp, and a student asked me this question:</p>
+    <blockquote>
+      <p style="font-style:italic; padding:0 0 20px 70px; font-size:20px; font-weight:lighter;">What's the difference between a “statement” and an “expression” in JavaScript?</p>
+    </blockquote>
+      
+    <p class="p">I felt like I knew the answer to this question, but when I tried to explain it, I couldn't put it into words. I had a <em style="font-weight: bold;">feeling</em> about it, but my actual knowledge was surprisingly hazy.</p>
+      <p class="p">There's nothing more humbling than teaching 😅. Students have a knack for identifying the "fuzzy spots" in our understanding.</p>
+      <p class="p">I've since come to realize that this question is <em style="font-weight: bold;">supremely</em> important. It's a load-bearing concrete pillar that will help support a ton of JavaScript knowledge.</p>
+      <p class="p">This is <em style="font-weight: bold;">especially</em> true for React developers. Most of those JSX rules you've had to memorize, and always forget to follow, are the result of this statement/expression duality.</p>
+      <p class="p">In this blog post, I'm going to share some of the epiphanies I've had about this distinction, and how we can use this information in our day-to-day work.</p>
+
+      <div>
+        <div class="svg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </div>
+            <p class="q">Intended audience</p>
+            <p class="q">This tutorial assumes that you're comfortable with basic JavaScript syntax, but is otherwise written to be beginner-friendly.</p>
+            <p class="q">Towards the end of the tutorial, we look at some React implications, and this section requires some React experience. If you're not a React dev, feel free to skip this section; hopefully, the rest of the tutorial will still offer a ton of value!</p>
+        </div>
+      </section>
+
+      <section>
+      <div class="clipsvgdiv">  
+        <h2 class="h2" id="expressions">
+          <a name="expressions" id="Expressions" href="#expressions">
+            <svg class="key" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgb(44, 11, 142)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> </a>
+         Expressions
+        </h2>
+      </div>
+      
+      <p class="p">At its core, an expression is a bit of JavaScript code that produces a value.</p>
+  
+      <p class="p">For example, these are all expressions:</p>
+        <ul>
+          <li><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span><code class="gray">1</code> → produces <code class="gray">1</code></li>
+          <li><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span><code class="gray">"hello"</code> → produces <code class="gray">"hello"</code></li>
+          <li><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span><code class="gray">5 * 10</code> → produces <code class="gray">50</code></li>
+          <li><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span><code class="gray">num > 100</code> → produces either <code class="gray">true</code> or <code class="gray">false</code></li>
+          <li><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span><code class="gray">isHappy ? "🙂" : "🙁"</code> → produces an emoji</li>
+          <li><span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span><code class="gray">[1, 2, 3].pop()</code> → produces the number <code class="gray">3</code></li>
+        </ul>
+
+      <p class="p">Expressions can contain expressions. For example, how many expressions do you count in this chunk of JS code? Make a guess, and then <em style="font-weight:bold; color: rgb(230, 0, 103);">drag the slider</em> to see them each highlighted:</p>
+
+      <div class="highlightedexpression">
+        <p class="p"><code>(5 + 1) * 2</code></p>
+        <p class="p">Highlighted Expression</p>
+        <input type="range" style="appearance: none; margin: 0 50px; display: block; width: 50%; outline-offset: 6px; outline-color: hsla(0 0% 100% 1); background:#fcf2f293; align-items: center;" value="0" id="expression-highlighter_currentlySelected" min="0" max="5">
+      </div>
+      </section>
+      
+      <section>
+      <div class="clipsvgdiv">  
+        <h2 class="h2" id="statements">
+          <a name="statements" id="Statements" href="#statements">
+            <svg class="key" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgb(44, 11, 142)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> </a>
+          </a>
+         Statements
+        </h2>
+      </div>
+     
+      <p class="p">A JavaScript program is a sequence of statements. Each statement is an instruction for the computer to do something.</p>
+
+      <p class="p">Here are some examples of statements in JavaScript:</p>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p><code class="lhi"><span style="color:#6a30e8;">let</span> hi <span style="color:#6a30e8;">=</span> <span style="color:#bf00b8;">5</span>;</code></p>
+      </div>
+    
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p><code class="lhi"><span class="purple">if</span> (hi <span class="purple"> > </span> <span class="pink">10</span>) { <br> <span class="green">// More statements here</span> <br> };</code></p>
+      </div>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p><code class="lhi"><span class="purple">throw new</span> Error( <span class="blue"></span> <span style="font-weight: bold;">Something exploded!'</span>);</code></p>
+      </div>
+    
+      <p class="p">Here's how I like to think about this: statements are the rigid structure that holds our program together, while expressions fill in the details.</p>
+    
+      <p class="p">Statements often have "slots" for expressions. We can put any expression we like into those slots.</p>
+
+      <p class="p">For example, declaring a variable has an expression slot:</p>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p><code class="lhi"><span class="blue">let</span> hi <span class="purple">=</span> <span class="green"></span> <span style="font-weight: lighter;">/* some expression */;</span></code></p>
+      </div>
+
+      <p class="p">We can use <em>any of the expressions</em> we saw earlier in that slot:</p>
+      
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+        <ul>
+          <li><code class="lhi"><span class="blue"> let</span> hi <span class="blue"> = </span><span class="pink"> 1 </span> ;</code></li>
+          <li><code class="lhi"><span class="blue"> let</span> hi <span class="blue"> = </span><span class="blue"></span><span style="font-weight:600;"></span> "hello" </span> ;</code></li>
+          <li><code class="lhi"><span class="blue"> let</span> hi <span class="blue"> = </span><span class="pink"> 5 </span><span class="blue"></span> <span style="font-weight:600;"> * </span><span class="pink"> 10 </span> ;</code></li>
+          <li><code class="lhi"><span class="blue"> let</span> hi <span class="blue"> = </span><span>num</span><span class="blue"> > </span><span class="pink"> 100 </span> ;</code></li>
+          <li><code class="lhi"><span class="blue"> let</span> hi <span class="blue"> = </span><span>num</span><span class="blue"> ? "🙂" </span><span style="color:black"> : </span><span class="blue"> "🙁" </span>;</code></li>
+          <li><code class="lhi"><span class="blue"> let</span> hi <span class="blue"> = </span><span>[</span><span class="pink"> 1 </span><span>,</span><span class="pink"> 2 </span> <span>,</span><span class="pink"> 3 </span><span></span>] .<span class="blue">pop</span><span>() ;</span></code></li>
+        </ul>
+      </div>
+
+      
+    <p class="p">In terms of valid syntax, expressions are interchangeable. If a statement has an expression slot, we can put any expression there, and the code will run. We won't get a syntax error.</p>
+    <p class="p"><em>That said,</em> we can still run into other issues. For example, the following code is syntactically valid, but we'll crash the browser tab if we try to run it, since it causes an infinite loop:</p>
+      
+    <div class="js">
+      <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+      </div>
+    </div>
+      <div class="hi">
+      <p class="p"><span class="blue;"> while </span><span>(</span><span class="blue;">"hello"</span><span> ) </span><span> { </span></p>
+      <br><span class="green" style="font-size:22px"> // Because “hello” never changes, this loop will</span>
+      <br><span class="green" style="font-size:22px"> // run over and over until the script crashes.</span>  
+      <br><span class="green" style="font-size:22px"> // Syntactically valid, but still problematic.</span>
+      <br> }
+      </p>
+      </div>
+      </section>
+
+      <section>
+      <div class="clipsvgdiv">
+        <h3 class="h3" id="a handy trick">
+          <a name="a handy trick" id="A handy trick" href="#a handy trick">
+            <svg class="key" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </a>
+        A handy trick
+        </h3>
+      </div>
+
+    <p class="p">Want to know whether a chunk of JS is an expression or a statement? Try to log it out!</p>
+    
+    <div class="js">
+      <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+      </div>
+    </div>
+      <div class="hi">
+      <p class="p">console.<span class="blue">log</span>(<span class="green">/* Some chunk of JS here */</span>);</p>  
+      </div>
+    
+      <p class="p">If it runs, the code is an expression. If you get an error, it's a statement (or, possibly, invalid JS).</p>
+      <p class="p">As a bonus, we can even see what the expression resolves to, since it'll be printed in the browser console!</p>
+      <p class="p">This works because <strong>all function arguments must be expressions.</strong> Expressions produce a value, and that value will be passed into the function. Statements don't produce a value, and so they can't be used as function arguments.</p>
+      <p class="p">Even as an experienced developer, I rely a <em style="font-weight:bold">ton</em> on <code class="gray">console.log</code>. It's a wonderfully versatile tool!</p>
+      </section>
+
+      <section>
+      <div class="clipsvgdiv">
+        <h2 class="h2" id="expressions as statements">
+          <a name="expressions as statements" id="Expressions as Statements" href="#expressions as statements">
+            <svg class="key" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgb(44, 11, 142)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </a>
+         Expressions as Statements
+        </h2>
+      </div>
+      <p class="p">Here is an expression: <code class="gray">1 + 2 + 3.</code></p>
+      <p class="p">What happens if we create a JS file that includes only this expression? Let's imagine we save the following content as <code class="gray">test.js:</code></p>
+    
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p class="p"><span class="pink">1</span><span class="purple"> + </span><span class="pink">2</span><span class="purple"> + </span><span class="pink">3</span></p>  
+      </div>
+
+      <p class="p">How many statements does this file have? Zero or one?</p>
+      <p class="p">Here's the deal: expressions can't exist on their own. They're always part of a statement. And so in this case, we have a statement that looks like this:</p>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p class="p"><span class="green">/* expression slot */</span></p>  
+      </div>
+
+      <p class="p">The statement is essentially empty aside from its expression slot. Our expression <code class="gray">1 + 2 + 3</code> fills this slot, and our statement is complete.</p>
+      <p class="p">In other words, all of the following lines are valid statements:</p>
+
+    
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+        <ul>
+          <code class="lhi"><span class="green"><li>// Statement 1:</span><br><span class="purple">let</span> hi <span class="purple">=</span><span class="green">/* expression slot */</span>;</code></li>
+          <code class="lhi"><span class="green"><li>// Statement 2:</span><br><span class="purple">return </span><span class="green"> /* expression slot */</span>;</code></li>
+          <code class="lhi"><span class="green"><li>// Statement 3:</span><br><span class="purple">if </span> (<span class="green">/* expression slot */</span>) { }</code></li>
+          <code class="lhi"><span class="green"><li>// Statement 4:</span><br><span class="green">/* expression slot */</span></code></li>
+        </ul>
+      </div>
+
+      <p class="p">Often, tutorials will falsely state that expressions are statements, but this isn't quite right. Expressions and statements are distinct things. But it's possible for a statement to wrap around an expression without providing any additional characters. <strong>Think of it like wrapping a sandwich in clear shrink wrap.</strong></p>
+      <p class="p">Statements typically end in a semi-colon, which marks the end of the statement. The semi-colon isn't necessary for certain statements, like<code class="gray"> if</code> statements, <code class="gray">while</code> loops, and function declarations.</p>
+      </section>
+
+      <section>
+      <div class="clipsvgdiv">
+        <h2 class="h2" id="practical implications in react">
+          <a name="practical implications in react" id="Practical implications in React" href="#practical implications in react">
+            <svg class="key" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgb(44, 11, 142)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </a>
+         Practical implications in React
+        </h2>
+      </div>
+      <p class="p">If you've worked with React before, you're probably aware that squiggly brackets (<code class="gray">{</code> and <code class="gray">}</code>) allow us to embed bits of JavaScript within our JSX, like this:</p>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JSX</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p class="p"><span class="purple">function</span> <span class="blue">CountdownClock</span>({ secondsRemaining }) { <br>
+      <span class="purple">return</span> (<br>
+      <span class="red">&lt;div&gt;</span><br>
+        Time left:<br>
+        {Math.<span class="blue">round</span>(secondsRemaining <span class="purple">/</span> <span class="pink">60</span>)} minutes<span class="purple">!</span><br>
+      <span class="red">&lt;/div&gt;</span><br>
+        );
+        }</p>
+      </div>
+
+      <p class="p">This is part of what makes React so magical; we have the full power of JavaScript available to us.</p>
+      <p class="p">But there's a catch — we can't put any JavaScript inside the curly brackets. Specifically, we can only include <em style="font-weight:bold">expressions,</em> not statements. The squiggly brackets essentially <strong>create an expression slot within our JSX.</strong></p>
+      <p class="p">If we try to embed a <em>statement</em> here, like an if/else statement, we'll get an error:</p>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JSX</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p class="p"><span class="purple">function</span> <span class="blue">CountdownClock</span>({ secondsRemaining }) {<br>
+      <span class="purple">return (</span><br>
+        // 🚫 <span class="green" style="font-weight:lighter">Throws a SyntaxError</span><br>
+      <span class="red">&lt;/div&gt;</span><br>
+        {<span class="purple">if</span> (secondsRemaining <span class="purple">></span> <span class="pink">0</span>) {<br>
+        <span class="purple">`</span>${secondsRemaining} <span class="purple">seconds left`</span><br>
+        } <span class="purple">else</span> {<br>
+        <span class="purple">"Time expired!"</span><br>
+        }}<br>
+      <span class="red">&lt;/div&gt;</span><br>
+        );<br>
+        }</p>
+      </div>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JSX</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p class="p"><span class="purple">function</span> <span class="blue">CountdownClock</span>({ secondsRemaining }) {<br>
+      <span class="purple">return (</span><br>
+            // ✅ <span class="green" style="font-weight:lighter"> Throws a SyntaxError</span><br>
+            <span class="red">&lt;/div&gt;</span><br>
+            {secondsRemaining <span class="purple">></span> <span class="pink">0</span><br>
+            <span class="purple">? </span><span class="purple"> `</span>${secondsRemaining} <span class="purple">seconds left`</span><br>
+            : <span class="purple"> "Time expired!"</span><br>
+            }<br>
+            <span class="red">&lt;/div&gt;</span><br>
+            );<br>
+      }</p>
+      </div>
+
+      <p class="p">This might seem like a weird JSX/React limitation, but <strong>>it's actually a JavaScript limitation.</strong></p>
+      <p class="p">I think we often blame React for seemingly arbitrary rules, like how components must return a single top-level element. But more often than not, React is just warning us about a <em style="font-weight: bold;">JavaScript</em> limitation.</p>
+      <p class="p">Understanding the difference between statements and expressions is an important first step towards demystifying a whole category of React warnings and bugs. We also need to learn about how JSX compiles into JavaScript, and how React's reconciliation and render cycle works… but, alas, those topics are beyond the scope of this blog post!</p>
+      <p class="p">Incidentally, I'm in the process of creating a comprehensive React course, the resource I wish existed when I was learning React. It's called <span class="blue" style="font-weight:bold">The Joy of React</span>, and you can sign up for updates today!</p>
+      </section>
+      
+      <section>
+      <div class="clipsvgdiv">
+        <h2 class="h2" id="in summary">
+          <a name="in summary" id="In Summary" href="#in summary">
+            <svg class="key" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgb(44, 11, 142)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </a>
+         In summary
+        </h2>
+      </div>
+      <p class="p">A JavaScript program consists of a sequence of statements. Each statement is an instruction to do something, like create a variable, run an if/else condition, or start a loop.</p>
+      <p class="p">Expressions produce a value, and these values are slotted into statements, like a Super Nintendo cartridge that changes what the Super Nintendo does.</p>
+      <p class="p">Expressions are <em style="font-weight: bold;">always</em> part of a statement, even if that statement is otherwise empty. For example, the code below runs a loop <em style="font-weight: bold;">without</em> using a <code class="gray">for</code> statement, but it still includes an “empty wrapper” statement:</p>
+
+      <div class="js">
+        <div style="background-color: lightgray; margin-left: 86%; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <p style="padding: 20px 20px 0 20px; margin: 0;">JS</p>
+        </div>
+      </div>
+      <div class="hi">
+      <p class="p">data.<span class="blue">for each</span>(item <span class="purple">=></span> console.<span class="blue">log</span>(item));</p>  
+      </div>
+
+      <p class="p">It can take a while for this distinction to become intuitive, but hopefully this blog post has clarified a few things!</p>
+
+      <div class="j">
+        <div class="k">
+          <h3 style="color: hsla(225deg 15% 50% 1);font-size: 13px; text-transform: uppercase;">Last Updated</h3>
+          <p style="font-size: 21px; font-weight:medium;">July 11th 2022</p>
+        </div>
+
+      <div style="display: flex; flex-direction: column; min-height: 72px; text-align: right;">
+      <h3 style="color: hsla(225deg 15% 50% 1); font-size: 13px; text-transform: uppercase;">Hits</h3>
+      <div style="min-width: 5px; min-height: 5px;"></div>
+      </div>
+
+      </div>
+
+    </article>
+      </section>
+    <aside>
+      <div class="table">
+      <h2 style="padding: 10px 0 10px 50px;">TABLE OF CONTENTS</h2>
+        <ul>
+          <a href="#introduction"><li>Introduction</li></a>
+          <a href="#expressions"><li>Expressions</li></a>
+          <a href="#statements"><li>Statements</li></a>
+          <a href="#a handy trick"><li>A handy trick</li></a>
+          <a href="#expressions as statements"><li>Expressions as statements</li></a>
+          <a href="#practical implications in react"><li>Practical implications in React</li></a>
+          <a href="#in summary"><li>In summary</li></a>
+        </ul>
+        <svg width="80px" height="60px" viewBox="0 0 50 42" fill="none" style="transform: rotate(0deg); margin-left: 90px;"><defs><linearGradient id="active-gradient-yuin" x1="25" y1="42" x2="26.3796" y2="0.0453673" gradientUnits="userSpaceOnUse"><stop stop-color="hsl(353deg, 100%, 52%)"></stop><stop offset="1" stop-color="hsl(313deg, 100%, 52%)"></stop></linearGradient><linearGradient id="inactive-gradient-yuin" x1="15" y1="41" x2="42" y2="-1.5" gradientUnits="userSpaceOnUse"><stop stop-color="#666" stop-opacity="0.4"></stop><stop offset="1" stop-color="#AAA" stop-opacity="0.4"></stop></linearGradient></defs><mask id="like-button-mask-yuin" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="42"><path d="M13.2537 0.0255029C23.4033 0.0255029 25.0273 10.5191 25.0273 10.5191C25.0273 10.5191 26.6512 -0.60088 37.6129 0.0255029C44.3441 0.410148 48.7484 6.32169 48.9804 12.1981C49.7924 32.7656 28.7678 41.5 25.0273 41.5C21.2868 41.5 -0.549833 32.3459 1.07416 12.1981C1.54782 6.32169 6.29929 0.0255029 13.2537 0.0255029Z" fill="#000000"></path></mask><mask id="active-gradient-mask-yuin" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="42"><polygon points="0,42  50,42 50,-0.011698533618279328 0,-0.011698533618279328" fill="#000000"></polygon></mask><g mask="url(#like-button-mask-yuin)"><path d="M13.2537 0.0255029C23.4033 0.0255029 25.0273 10.5191 25.0273 10.5191C25.0273 10.5191 26.6512 -0.60088 37.6129 0.0255029C44.3441 0.410148 48.7484 6.32169 48.9804 12.1981C49.7924 32.7656 28.7678 41.5 25.0273 41.5C21.2868 41.5 -0.549833 32.3459 1.07416 12.1981C1.54782 6.32169 6.29929 0.0255029 13.2537 0.0255029Z" fill="url(#inactive-gradient-yuin)"></path><g mask="url(#active-gradient-mask-yuin)"><path d="M13.2537 0.0255029C23.4033 0.0255029 25.0273 10.5191 25.0273 10.5191C25.0273 10.5191 26.6512 -0.60088 37.6129 0.0255029C44.3441 0.410148 48.7484 6.32169 48.9804 12.1981C49.7924 32.7656 28.7678 41.5 25.0273 41.5C21.2868 41.5 -0.549833 32.3459 1.07416 12.1981C1.54782 6.32169 6.29929 0.0255029 13.2537 0.0255029Z" fill="url(#active-gradient-yuin)"></path></g><g style="opacity: 0; transform: translate(0px, 0px);"><circle cx="15" cy="22" r="2" fill="#000000" fill-opacity="0.4"></circle><circle cx="35" cy="22" r="2" fill="#000000" fill-opacity="0.4"></circle></g><g style="opacity: 1;"><path d="M 13 23 Q 15 19, 17 23 " stroke="#000000" stroke-opacity="0.4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M 33 23 Q 35 19, 37 23 " stroke="#000000" stroke-opacity="0.4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></g><g><mask id="tongue-mask" mask-type="alpha" maskUnits="userSpaceOnUse" x="20" y="27" width="11" height="6"><path d="M28.3333 27H21.6666C21.6666 27 20.0001 27 20 29C19.9999 31 22.3875 33 25 33C27.6125 33 30 31 30 29C30 27 28.3333 27 28.3333 27Z" fill="#000000" fill-opacity="0.4"></path></mask><g mask="url(#tongue-mask)" style="opacity: 1;"><path d="M28.3333 27H21.6666C21.6666 27 20.0001 27 20 29C19.9999 31 22.3875 33 25 33C27.6125 33 30 31 30 29C30 27 28.3333 27 28.3333 27Z" fill="#000000" fill-opacity="1"></path><circle cx="25" cy="35" r="5" fill="#DB2C49" fill-opacity="0.5"></circle></g><path d=" M 20 30 Q 25 33.6 30 30" stroke="#000000" stroke-opacity="0.4" stroke-linecap="round" style="opacity: 0;"></path></g><g><path d="M53.5 18.5L47 5C47 5 53.5 31.9722 24.5 36C-4.5 40.0278 1 1.5 1 1.5L-6.5 25L8.00002 44.5L15.5 52L39 49L53.5 18.5Z" fill="black" fill-opacity="0.1"></path><path d="M6.14471 8.44525C6.64924 7.12038 7.41962 5.99208 8.36394 5.15003C9.30652 4.30953 10.3901 3.78182 11.5089 3.58622" stroke="white" stroke-opacity="0.45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path><path d="M31.7084 5.95975C32.7822 4.70067 34.1021 3.81419 35.484 3.37609" stroke="white" stroke-opacity="0.45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></g></g></svg>
+      </div>
+    </aside>
+  </main>
+
+      <div class="foot">
+        <div class="f">
+          <h2 class="h2">A front-end web development newsletter that sparks joy</h2>
+          <p class="p">My goal with this blog is to create helpful content for front-end web devs, and my newsletter is no different! I'll let you know when I publish new content, and I'll even share <em style="font-weight: bold;">exclusive newsletter-only content</em> now and then.</p>
+          <p class="p">No spam, unsubscribe at any time.</p>
+          
+          
+          <form>
+            <div>
+              <label for="name">First Name</label><br>
+              <input type="text" id="name" style="border:none; border-bottom: 3px solid rgb(10, 12, 16);" />
+          </div>
+          <div>
+              <label for="mail">Email</label><br>
+              <input type="email" id="mail" style="border:none; border-bottom: 3px solid rgb(10, 12, 16);" />
+          </div>
+          <div>
+              <button type="submit" style="width: 180px; height:70px; --magic-rainbow-color-newsletter-signup-button-0:hsl(240deg, 100%, 45%); --magic-rainbow-color-newsletter-signup-button-1:hsl(260deg, 100%, 55%); --magic-rainbow-color-newsletter-signup-button-2:hsl(325deg, 100%, 48%); transition: --magic-rainbow-color-newsletter-signup-button-0 1625ms linear 0s, --magic-rainbow-color-newsletter-signup-button-1 1625ms linear 0s, --magic-rainbow-color-newsletter-signup-button-2 1625ms linear 0s; background: radial-gradient( circle at top left, var(--magic-rainbow-color-newsletter-signup-button-2), var(--magic-rainbow-color-newsletter-signup-button-1), var(--magic-rainbow-color-newsletter-signup-button-0) );" class="UnstyledButton-sc-1qlpyz4-0 RainbowButton__ButtonElem-sc-8qw23r-0 dTBdvC hrUyxt"><span style="color:white; font-size: 22px; font-weight: bold;">Subscribe</span></button>
+          </div>
+          </form>
+        
+            <img class="doll" src="./doll.webp" />
+            <svg name="footersvg" width="900" height="400" viewBox="0 0 1420 478" fill="rgb(223, 235, 246)" preserveAspectRatio="none" class="footersvg"><defs><clipPath id="clip0"><rect width="1420" height="478" fill="blue"></rect></clipPath></defs><g clip-path="url(#clip0)"><path d="M744 464C686 478.5 598 478.5 598 478.5H1394C1323.5 478.5 1241 478.5 1173 450.5C1105 422.5 1145.05 288.617 1066 256.5C986.945 224.383 914.079 230.227 849.5 286C805.5 324 822.393 444.402 744 464Z" fill="var(--color-muted)"></path></g></svg>
+        </div>
+      </div>
+       
+    <footer>
+      <div class="mainfooter">
+        <div class="leftfooter">
+          <div style="max-width: 1100px; display:flex; margin-top: 10px;padding: 0;">
+            <span class="a" href="https://www.joshwcomeau.com/">Josh</span><span class="b">W</span><span class="c">^</span></span><span class="a">Comeau</span></a>
+          </div>
+          <div><p>Thanks for coming</p></div>
+          <div style="color: hsla (0 0 40% 1);">© 2020-present Joshua Comeau. All Rights Reserved.</div>
+        </div>
+      
+        <div class="rightfooter">
+          <div>  
+          <p>Tutorials</p>
+            <div class="grid">
+                <a class="g" href="/tutorials/react/">React</a>
+                <a class="g" href="/tutorials/animation/">Animation</a>
+                <a class="g" href="/tutorials/css/">CSS</a>
+                <a class="g" href="/tutorials/career/">Career</a>
+                <a class="g" href="/tutorials/gatsby/">Gatsby</a>
+                <a class="g" href="/tutorials/nextjs/">Next.js</a>
+                <a class="g" href="/tutorials/performance/">Performance</a>
+                <a class="g" href="/tutorials/javascript/">JavaScript</a>
+            </div>
+          </div>
+          
+          <div>
+          <p>Links</p>
+            <div class="grid2">
+              <a class="g" href="https://twitter.com/joshwcomeau" rel="noopener noreferrer" target="_blank">Twitter</a>
+              <a class="g"href="mailto:support@joshwcomeau.com" rel="noopener noreferrer" target="_blank">Contact</a>
+              <a class="g"href="/terms/">Terms of Use</a>
+              <a class="g"href="/privacy/">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+</body>
+</html>
